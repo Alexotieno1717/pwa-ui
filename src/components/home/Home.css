@@ -1,0 +1,174 @@
+/* ==========================================
+ HOMEPAGE SCREEN  STYLES
+ ====================================
+*/
+.smallHomepageScreen{
+    display: none;
+}
+
+
+/* ====================================================================
+  MEDIA QUERY
+ ===========================================================*/
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+
+}
+
+
+
+@media only screen and (max-width: 600px){
+    /*Big smartphones [426px -> 600px]*/
+
+    /* ==========================================
+     HOMEPAGE SCREEN  STYLES
+     ====================================
+    */
+
+    .bigHomepageScreen{
+        display: none;
+    }
+
+    .smallHomepageScreen{
+        display: block;
+    }
+
+    .smallBackground{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30vh;
+        background: linear-gradient(180deg, #3BF4F4 0%, rgba(28, 237, 116, 0.14) 100%);
+        opacity: .9;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .bell i{
+        color: #160D3D !important;
+        margin-top: 50px;
+        margin-right: 50%;
+        float: right;
+    }
+
+    .headerContentHome{
+        padding: 10px;
+    }
+
+    .headerContentHome img{
+        width: 25%;
+        border: 1px solid #000000;
+        border-radius: 50%;
+        margin-left: 20px;
+    }
+
+    .homeSalutation{
+        padding-left: 15px;
+        font-weight: bold;
+    }
+
+    .homeSalutation p{
+        font-weight: normal;
+    }
+
+    .icon-bell{
+        padding: 15px;
+    }
+
+    .fa-arrow-right{
+        margin-left: 20px;
+    }
+
+    .playQuiz{
+        padding: 20px;
+        width: 90%;
+        background: rgba(28, 237, 237, 0.42);
+        border: 3px solid #1CEDED;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        margin-top: 10%;
+        margin-left: 20px;
+    }
+
+
+
+
+}
+
+
+@media only screen and (max-width: 425px){
+    /*Small smartphones [325px -> 425px]*/
+
+    /* ==========================================
+     HOMEPAGE SCREEN  STYLES
+     ====================================
+    */
+    .bigHomepageScreen{
+        display: none;
+    }
+
+    .smallHomepageScreen{
+        display: block;
+    }
+
+    .smallBackground{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 30vh;
+        background: linear-gradient(180deg, #3BF4F4 0%, rgba(28, 237, 116, 0.14) 100%);
+        opacity: .9;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .bell i{
+        color: #160D3D !important;
+        margin-top: 50px;
+        margin-right: 50%;
+        float: right;
+    }
+
+    .headerContentHome{
+        padding: 10px;
+    }
+
+    .headerContentHome img{
+        width: 25%;
+        height: 25%;
+        border: 1px solid #000000;
+        border-radius: 50%;
+        margin-top: 30px;
+    }
+
+    .homeSalutation{
+        padding-left: 15px;
+        font-weight: bold;
+    }
+
+    .homeSalutation p{
+        font-weight: normal;
+    }
+
+    .icon-bell{
+        padding: 15px;
+        color: #160D3D;
+    }
+
+    .fa-arrow-right{
+        margin-left: 20px;
+    }
+
+    .playQuiz{
+        padding: 20px;
+        width: 90%;
+        background: rgba(28, 237, 237, 0.42);
+        border: 3px solid #1CEDED;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        margin-top: 10%;
+        margin-left: 20px;
+    }
+
+}
