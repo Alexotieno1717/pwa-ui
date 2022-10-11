@@ -5,8 +5,8 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import Otp from './components/otp/Otp';
-import { Component } from 'react';
 import LeaderBoard from './components/leaderboard/LeaderBoard';
+import SplashScreen from './components/SplashScreen/SplashScreen';
 
 
 
@@ -14,6 +14,7 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
+           <Route path='/' element= {<SplashScreen  />} />
           <Route path='/home' element= {<Home  />} />
           <Route path='/otp' element={<Otp />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />

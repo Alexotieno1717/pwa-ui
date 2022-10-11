@@ -1,0 +1,239 @@
+.loader{
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    background: #494d5f;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+    overflow: hidden;
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    animation: load 3s infinite;
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+        background: #0BFFED;
+    }
+
+    50% {
+        width: 60%;
+        background: #0BFFED;
+    }
+
+    100% {
+        width: 100%;
+        background: #0BFFED;
+    }
+}
+
+
+
+/* ==========================================
+  SPLASH SCREEN  STYLES
+  ====================================
+  */
+.Splash{
+    margin: 0;
+    padding: 0;
+    background: #160D3D;
+    height: 100vh;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.copyright{
+    display: none;
+}
+
+.small-screen{
+    display: none;
+}
+
+.splash-img img{
+    background: orange;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    margin-top: 6%;
+    margin-left: 40%;
+
+}
+
+.logo-big-screen img{
+    padding-top: 6%;
+    margin-left: 43%;
+    width: 10%;
+}
+
+.logo-big-screen p{
+    padding-top: 6%;
+    padding-left: 40px;
+}
+
+.logo-big-screen span{
+    position: absolute;
+    bottom: 5%;
+    margin-left: 45%;
+}
+
+
+/* ====================================================================
+  MEDIA QUERY
+ ===========================================================*/
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+
+    .btn-custom-general{
+        background: #0BFFED;
+        border: 1px solid #0BFFED;
+        border-radius: 28px;
+        width: 256px;
+        height: 60px;
+        color: #000;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 22px;
+        margin-top: 20px;
+        margin-left: 25%;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px){
+    /*Big smartphones [426px -> 600px]*/
+
+    /* ==========================================
+    SPLASH SCREEN  STYLES
+    ====================================
+    */
+    .small-screen{
+        display: block;
+    }
+
+    .big-screen{
+        display: none;
+    }
+
+    .blue1{
+        background: url('../../../public/img/wave.svg') no-repeat;
+        background-size: cover;
+        height: 50vh;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .copyright{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 30%;
+        color: #160D3D;
+    }
+
+    .logo img{
+        width: 60%;
+        padding-top: 40%;
+        margin-left: 20%;
+    }
+
+    .dots-1{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        left: 52px;
+        top: 120px;
+        background: #0BFFED;
+    }
+
+    .dots-2{
+
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        left: 79px;
+        top: 91px;
+        background: #0BFFED;
+    }
+
+}
+
+
+@media only screen and (max-width: 425px){
+    /*Small smartphones [325px -> 425px]*/
+
+    /* ==========================================
+    SPLASH SCREEN  STYLES
+    ====================================
+    */
+    .small-screen{
+        display: block;
+    }
+
+    .big-screen{
+        display: none;
+    }
+
+    .blue1{
+        background: url('../../../public/img/wave2.svg') no-repeat;
+        background-size: cover;
+        height: 50vh;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .copyright{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 30%;
+        color: #160D3D;
+    }
+
+    .logo img{
+        width: 60%;
+        padding-top: 60%;
+        margin-left: 15%;
+    }
+
+    .dots-1{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        left: 52px;
+        top: 130px;
+        background: #0BFFED;
+    }
+
+    .dots-2{
+
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        left: 79px;
+        top: 101px;
+        background: #0BFFED;
+    }
+
+}

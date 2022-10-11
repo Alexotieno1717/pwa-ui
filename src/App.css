@@ -1,39 +1,4 @@
 
-/* ==========================================
-  SPLASH SCREEN  STYLES 
-  ====================================
-  */
-.Splash{
-  margin: 0;
-  padding: 0;
-  background: #160D3D;
-  height: 100vh;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.copyright{
-  display: none;
-}
-
-.small-screen{
-  display: none;
-}
-
-.splash-img img{
-  background: orange;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  margin-top: 6%;
-  margin-left: 40%;
-  
-}
-
 .logo-big-screen img{
   padding-top: 6%;
   margin-left: 43%;
@@ -370,15 +335,6 @@
 
   .big-screen{
     display: none;
-  }
-
-  .blue{
-    background: url('../public/img/wave2.svg') no-repeat;
-    background-size: cover;
-    height: 50vh; 
-    position: absolute;
-    bottom: 0;
-    width: 100%;
   }
 
   .copyright{
