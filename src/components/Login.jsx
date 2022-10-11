@@ -9,12 +9,12 @@ function Login() {
             <div className="row">
                 <div className="col-md-6 loginBackground">
                     <div className="LargeScreenLogo">
-                        <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='image'/>
+                        <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo'/>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="splash-img">
-                        <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='image'/>
+                        <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='logo'/>
                     </div>
                     <div className="loginTitle">
                         <h3 className='text-dark text-center mt-4'>Welcome to mSwali</h3>
@@ -92,7 +92,7 @@ function Login() {
                 <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali-cyan'/>
             </div>
             <div className="login-image">
-                <img src={process.env.PUBLIC_URL+"/img/logos/loginImage.png "}  alt='image'/>
+                <img src={process.env.PUBLIC_URL+"/img/logos/loginImage.png "}  alt='logo'/>
             </div>
             <div className="content text-center mt-2">
                 <p>Log In to mSwali</p>

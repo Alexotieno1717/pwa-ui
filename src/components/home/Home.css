@@ -6,13 +6,67 @@
     display: none;
 }
 
+main {
+    padding-left: 240px;
+}
+
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 240px;
+    z-index: 600;
+}
+
+.navbar-brand img{
+    width: 25%;
+}
+
+.btnPlayBigScreen{
+    background: #1CEDED !important;
+    padding: 15px;
+    border: 3px solid #1CEDED;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+.roundBackground{
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 15px 40px 5px #EDEDED;
+    border-radius: 10px;
+    margin-top: 40px;
+}
 
 /* ====================================================================
   MEDIA QUERY
- ===========================================================*/
+ =====================opt======================================*/
 
 @media only screen and (max-width: 1200px){
     /*Tablets [601px -> 1200px]*/
+    main {
+        padding-left: 200px;
+    }
+
+    .btnPlayBigScreen{
+        background: #1CEDED !important;
+        border: 3px solid #1CEDED;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+    }
+
+    .roundBackground{
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 15px 40px 5px #EDEDED;
+        border-radius: 10px;
+        margin-top: 20%;
+    }
 
 }
 

@@ -8,12 +8,12 @@ function Otp() {
             <div className="row">
                     <div className="col-md-6 loginBackground">
                         <div className="LargeScreenLogo">
-                            <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='image' />
+                            <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="splash-img">
-                            <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='image'/>
+                            <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='happy'/>
                         </div>
                         <div className="loginTitle">
                             <h3 className='text-dark text-center mt-4'>Waiting for verification sent to</h3>
@@ -36,7 +36,7 @@ function Otp() {
         <div className="container-fluid otpSmallScreen">
             <p className='pt-4'> Go Back</p>
             <div className="email-icon pt-5 mt-5">
-                <img src={process.env.PUBLIC_URL+"/img/logos/email.png"}  alt='image'/>
+                <img src={process.env.PUBLIC_URL+"/img/logos/email.png"}  alt='email'/>
             </div>
             <div className="content text-center mt-5">
                 <h3>Waiting for verification of</h3>

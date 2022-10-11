@@ -5,10 +5,10 @@ const SplashScreen = () => {
             {/* Big Screen */}
             <div className="big-screen">
                 <div className="splash-img">
-                    <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='image' />
+                    <img src={process.env.PUBLIC_URL+"/img/logos/happy.png"}  alt='happy' />
                 </div>
                 <div className="logo-big-screen">
-                    <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='image' />
+                    <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
                     <p>&copy; mSwali All Rights Reversed</p>
                     <span>V 0.0.1</span>
                 </div>
@@ -22,7 +22,7 @@ const SplashScreen = () => {
                         <div className="dots-2"/>
                     </div>
                     <div className="logo">
-                        <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='image'/>
+                        <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo'/>
                     </div>
                 </div>
                 <section className="blue">
