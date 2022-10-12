@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import Otp from './components/otp/Otp';
 import LeaderBoard from './components/leaderboard/LeaderBoard';
 import SplashScreen from './components/SplashScreen/SplashScreen';
+import Login from './components/Authentication/login/Login';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/home' element= {<Home  />} />
           <Route path='/otp' element={<Otp />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
+          <Route path='/login' element={<Login />} />
           <Route path='*' element='Page does not exist'/>
         </Routes>
       </BrowserRouter>

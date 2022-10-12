@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 function Navbar() {
@@ -33,6 +34,13 @@ function Navbar() {
             <div className='col-md-2'>
               {/*Right links*/}
               <ul className="navbar-nav avatar-nav ms-auto d-flex flex-row">
+                <NavLink to='/login'
+                         aria-current="true"
+                         className="list-group-item list-group-item-action py-2 ripple"
+                >
+                  Login
+                </NavLink>
+
                 {/*Avatar*/}
                 <li className="nav-item">
                   <a

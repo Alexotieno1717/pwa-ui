@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import './Login.css'
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+
+
 
 function Login() {
-  return (
+    const [email, setEmail] = useState('')
+
+    const navigate = useNavigate()
+
+    const checkUser = (e) => {
+        e.preventDefault();
+        axios
+          .get(`corporate-tunnel/check-user&email=${email}`)
+          .then((res) => {
+              if (res.data.status === true){
+                  navigate('/home')
+              }else {
+                  navigate('/login');
+              }
+              console.log(res.data, "hello");
+
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    };
+
+    // const url = 'http://197.248.4.233/mswali/mswali_app/backend/web/index.php?r=corporate-tunnel/check-user&email=alexotieno900@gmail.com';
+
+    return (
     <div className='login'>
 
         {/* Big Screen */}
@@ -19,12 +48,16 @@ function Login() {
                     <div className="loginTitle">
                         <h3 className='text-dark text-center mt-4'>Welcome to mSwali</h3>
                         <p className='text-dark text-center mt-4'>Enter your number to continue</p>
-                        <form action="#" method="post">
+                        <form method='GET' onSubmit={checkUser}>
                             <div className="form-group">
                                 <label htmlFor="email" className='mt-3'>Enter Email Address </label>
-                                <input type="text" className='form-control form-control-lg inputCustom mt-3' placeholder='example@kq.co.ke' />
+                                <input type="email"
+                                       className='form-control form-control-lg inputCustom mt-3'
+                                       placeholder='example@kq.co.ke'
+                                       onChange={e => setEmail(e.target.value)}
+                                />
                             </div>
-                            <button className='btn-custom-general'>Continue</button>
+                            <button type='submit' className='btn-custom-general'>Continue</button>
                         </form>
                     </div>
                 </div>
@@ -101,7 +134,10 @@ function Login() {
                         <label htmlFor="email" className='mt-3'>Enter Email Address </label>
                         <input type="text" className='form-control form-control-lg inputCustom mt-3' placeholder='example@kq.co.ke' />
                     </div>
-                    <button className="btn btn-custom">Continue</button>
+                    <button 
+                      className="btn-custom"
+                      // onClick={(e) => login(e)}
+                    >Continue</button>
                 </form>
             </div>
         </div>
