@@ -1,0 +1,56 @@
+.signUpBackground{
+    background: #160D3D;
+    height: 100vh;
+}
+
+
+
+
+/* ====================================================================
+  MEDIA QUERY
+ ===========================================================*/
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+}
+
+@media only screen and (max-width: 600px){
+    /*Big smartphones [426px -> 600px]*/
+    .signUpBackground{
+        display: none;
+    }
+
+    .labelCustom{
+        text-align: center;
+    }
+
+    .inputCustom{
+        color: black;
+    }
+
+    .inputCustom:focus{
+        color: black;
+    }
+
+}
+
+@media only screen and (max-width: 425px){
+    /*Small smartphones [325px -> 425px]*/
+    .signUpBackground{
+        display: none;
+    }
+
+    .labelCustom{
+        text-align: center;
+        padding-left: 20%;
+    }
+
+    .inputCustom{
+        color: black;
+    }
+
+    .inputCustom:focus{
+        color: black;
+    }
+
+}
