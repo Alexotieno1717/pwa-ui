@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { ErrorAlert, SuccessAlert, ValidationAlert } from '../../../utils/alerts';
 
 
 
@@ -10,21 +13,28 @@ function Login() {
 
     const navigate = useNavigate()
 
+    const notify = () => toast("Wow so easy!");
+
     const checkUser = (e) => {
         e.preventDefault();
         axios
           .get(`corporate-tunnel/check-user&email=${email}`)
           .then((res) => {
               if (res.data.status === true){
+                  SuccessAlert(res.data.message)
                   navigate('/home')
+
               }else {
-                  navigate('/login');
+                  ErrorAlert(res.data.message)
+                  navigate('/signup');
               }
               console.log(res.data, "hello");
 
           })
           .catch((err) => {
               console.log(err);
+              // set validation alert
+              ValidationAlert(err)
           });
     };
 
@@ -32,6 +42,7 @@ function Login() {
 
     return (
     <div className='login'>
+
 
         {/* Big Screen */}
         <div className="container-fluid" id="LoginBigScreen">
@@ -55,6 +66,7 @@ function Login() {
                                        className='form-control form-control-lg inputCustom mt-3'
                                        placeholder='example@kq.co.ke'
                                        onChange={e => setEmail(e.target.value)}
+                                       required
                                 />
                             </div>
                             <button type='submit' className='btn-custom-general'>Continue</button>
@@ -136,7 +148,6 @@ function Login() {
                     </div>
                     <button 
                       className="btn-custom"
-                      // onClick={(e) => login(e)}
                     >Continue</button>
                 </form>
             </div>
