@@ -47,6 +47,15 @@
     margin-left: 30%;
 }
 
+.errorStyling{
+    position: absolute;
+    background: red;
+    padding: 20px;
+    box-shadow: 5px 5px 5px #494d5f;
+    color: black;
+    float: right;
+}
+
 
 
 
