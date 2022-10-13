@@ -8,18 +8,25 @@ import Otp from './components/otp/Otp';
 import LeaderBoard from './components/leaderboard/LeaderBoard';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import Login from './components/Authentication/login/Login';
+import SignUp from './components/Authentication/sign-up/SignUp';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import React from 'react';
 
 
 
 function App() {
   return (
       <BrowserRouter>
+
+        <ToastContainer limit={1} />
         <Routes>
-           <Route path='/' element= {<SplashScreen  />} />
+          <Route path='/' element= {<SplashScreen  />} />
           <Route path='/home' element= {<Home  />} />
           <Route path='/otp' element={<Otp />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
           <Route path='*' element='Page does not exist'/>
         </Routes>
       </BrowserRouter>
