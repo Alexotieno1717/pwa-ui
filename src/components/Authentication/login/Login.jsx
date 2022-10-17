@@ -22,6 +22,7 @@ function Login() {
           .then((res) => {
               if (res.data.status === true){
                   SuccessAlert(res.data.message)
+                  localStorage.setItem("userEmail", email);
                   navigate('/home')
 
               }else {
