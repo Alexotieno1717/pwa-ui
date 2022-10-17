@@ -12,9 +12,6 @@ function Login() {
     const [email, setEmail] = useState('')
 
     const navigate = useNavigate()
-
-    const notify = () => toast("Wow so easy!");
-
     const checkUser = (e) => {
         e.preventDefault();
         axios
@@ -38,8 +35,6 @@ function Login() {
               ValidationAlert(err)
           });
     };
-
-    // const url = 'http://197.248.4.233/mswali/mswali_app/backend/web/index.php?r=corporate-tunnel/check-user&email=alexotieno900@gmail.com';
 
     return (
     <div className='login'>

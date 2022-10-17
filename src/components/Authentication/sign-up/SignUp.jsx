@@ -1,7 +1,38 @@
 import './SignUp.css'
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const SignUp = () =>{
+
+  const navigate = useNavigate()
+
+  const [userName, setUserName] = useState('')
+  const [emailAddress, setEmailAddress] = useState('');
+
+  const signUpUser = (e) =>{
+    e.preventDefault()
+    axios
+      .post(`corporate-tunnel/create-user&username=${userName}&email=${emailAddress}`)
+      .then((response) => {
+        if (response.data.status_message === 'saved successfully'){
+          axios.get(`corporate-tunnel/generate-otp&email=${emailAddress}`).then(r => {
+            navigate('/otp');
+            console.log("Otp send successful to your email")
+          })
+        }else {
+          console.log("User with this email exits... Login in to access your account")
+          navigate('/login');
+
+        }
+        console.log(response.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <div className='signup'>
 
@@ -19,17 +50,19 @@ const SignUp = () =>{
             <div className="loginTitle">
               <h3 className='text-dark text-center mt-4'>Welcome to mSwali</h3>
               <p className='text-dark text-center mt-4'>Enter your Username and Email to continue</p>
-              <form method='POST'>
+              <form method='POST' onSubmit={signUpUser}>
                 <div className="form-group">
                   <input type="text"
                          className='form-control form-control-lg inputCustom mt-3'
                          placeholder='UserName'
+                         onChange={e => setUserName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
                   <input type="email"
                          className='form-control form-control-lg inputCustom mt-5'
                          placeholder='example@kq.co.ke'
+                         onChange={e => setEmailAddress(e.target.value)}
                   />
                 </div>
                 <button type='submit' className='btn-custom-general'>Continue</button>
