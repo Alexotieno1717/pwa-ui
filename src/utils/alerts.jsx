@@ -1,4 +1,3 @@
-// react toastify alert
 import { AxiosError } from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
