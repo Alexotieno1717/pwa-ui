@@ -2,8 +2,26 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './SideBar.css'
+import { useNavigate } from 'react-router';
+import { LogOutSuccessAlert } from '../../../utils/alerts';
 
 function SideBar() {
+
+  const navigate = useNavigate();
+
+  const logout = (e) => {
+    e.preventDefault()
+    console.log("Logout Successfully");
+
+    // Alert message for login out
+    LogOutSuccessAlert()
+
+    // CLEAR DATA FROM STORAGE
+    localStorage.clear();
+    sessionStorage.clear();
+
+    navigate("/login");
+  }
 
   return(
     <div className='container-fluid'>
@@ -50,9 +68,16 @@ function SideBar() {
             <a href="http://localhost:3000/" className="list-group-item list-group-item-action py-2 ripple"
             ><i className='fas fa-comments fa-fw me-3'/><span>Feedback</span></a
             >
-            <a href="/" className="list-group-item list-group-item-action py-2 ripple"
-            ><i className='fas fa-arrow-circle-right fa-fw me-3'/><span>Log Out</span></a
+            <NavLink to='#'
+                     aria-current="true"
+                     onClick={logout}
+
             >
+              <i className='fas fa-arrow-circle-right fa-fw me-3'/><span>Log Out</span>
+            </NavLink>
+            {/*<a href="/" className="list-group-item list-group-item-action py-2 ripple"*/}
+            {/*><i className='fas fa-arrow-circle-right fa-fw me-3'/><span>Log Out</span></a*/}
+            {/*>*/}
           </div>
         </div>
       </nav>
