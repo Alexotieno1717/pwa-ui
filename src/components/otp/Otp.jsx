@@ -1,6 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+import { SuccessAlert } from '../../utils/alerts';
 
 function Otp() {
+
+  const navigate = useNavigate()
+  const [signUpOTP, setSignUpOTP] = useState(null)
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+
+  const otpAuth = (e) => {
+    e.preventDefault()
+    axios
+      .get(`corporate-tunnel/verify-otp&email=${user.emailAddress}&code=${parseInt(signUpOTP)}`)
+      .then(res => {
+        if (res.data.is_valid == true){
+          SuccessAlert(res.data.message)
+          navigate('/home')
+          console.log("Verifying opt was successful")
+          console.log(res.data)
+        }else {
+          console.log("Verification failed.... Check where the errors occurred")
+          console.log(res.data)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+  }
+
   return (
     <div className='container-fluid otp'>
         {/* Otp Big Screen */}
@@ -21,9 +52,13 @@ function Otp() {
                             <p className="text-center pt-2">We've sent the code to you mobile phone</p>
 
 
-                            <form action="#" method="post">
+                            <form method="GET" onSubmit={otpAuth}>
                                 <div className="form-group">
-                                    <input type="text" className='form-control form-control-lg inputCustom mt-3' placeholder='....' />
+                                    <input type="number"
+                                           className='form-control form-control-lg inputCustom mt-3'
+                                           placeholder='....'
+                                           onChange={e => setSignUpOTP(e.target.value)}
+                                    />
                                 </div>
                                 <button className='btn-custom-general'>Verify</button>
                             </form>
