@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 import './Home.css';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 
 function Home() {
+
+    const [myLocalStorageData, setMyLocalStorageData] = useState()
+
+    useEffect(()=> {
+      //logic for getting a value from local storage stored under the key 'key'
+      const data = localStorage.getItem('userEmail')
+      setMyLocalStorageData(data)
+      console.log(data)
+
+
+    },[myLocalStorageData]);
+
+
+
+
   return (
       <div className='container-fluid'>
 
       {/* Bigger Screen */}
+
 
       <div className='container-fluid bigHomepageScreen'>
         <div className='row'>
@@ -40,7 +56,10 @@ function Home() {
                     <div className='col-md-2'/>
                     <div className='col-md-8'>
                       <div className='roundBackground'>
-                        <h2>Rounds : </h2>
+                        <h2>Rounds : {myLocalStorageData} </h2>
+                        <div>
+                          {myLocalStorageData}
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-2'/>
