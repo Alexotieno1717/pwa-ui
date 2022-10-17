@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { ExistingUser, SignUpSuccessAlert } from '../../../utils/alerts';
 
 const SignUp = () =>{
 
@@ -19,9 +20,11 @@ const SignUp = () =>{
         if (response.data.status_message === 'saved successfully'){
           axios.get(`corporate-tunnel/generate-otp&email=${emailAddress}`).then(r => {
             navigate('/otp');
+            SignUpSuccessAlert(response.data.message)
             console.log("Otp send successful to your email")
           })
         }else {
+          ExistingUser(response.data.message)
           console.log("User with this email exits... Login in to access your account")
           navigate('/login');
 
