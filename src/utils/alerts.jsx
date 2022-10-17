@@ -31,6 +31,12 @@ export const SignUpSuccessAlert = (message) => {
   });
 }
 
+export const LogOutSuccessAlert = (message) => {
+  toast.success(`You have been logout successfully`, {
+    position: toast.POSITION.TOP_RIGHT
+  });
+}
+
 export const ExistingUser = (message) => {
   toast.error(`User with this email exits... Login in to access your account`, {
     position: toast.POSITION.TOP_RIGHT
