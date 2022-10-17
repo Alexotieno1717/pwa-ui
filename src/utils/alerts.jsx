@@ -25,6 +25,18 @@ export const ValidationAlert = (message) => {
   });
 }
 
+export const SignUpSuccessAlert = (message) => {
+  toast.success(`Signup successful! Otp send to your email`, {
+    position: toast.POSITION.TOP_RIGHT
+  });
+}
+
+export const ExistingUser = (message) => {
+  toast.error(`User with this email exits... Login in to access your account`, {
+    position: toast.POSITION.TOP_RIGHT
+  });
+}
+
 export const ErrorAlert = () => {
     toast.error(`You don't have an account! redirecting to Register page`, {
       position: toast.POSITION.TOP_RIGHT
@@ -32,4 +44,4 @@ export const ErrorAlert = () => {
 
 }
 
-export const AlertContainer = () => ( <ToastContainer autoClose={5000}/> )
+export const AlertContainer = () => ( <ToastContainer autoClose={3000}/> )
