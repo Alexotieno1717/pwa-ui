@@ -15,7 +15,7 @@ const SplashScreen = () => {
                 </div>
                 <div className="logo-big-screen">
                     <img src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
-                    <p>&copy; Copyright mSwali { new Date().getFullYear() }</p>
+                    <p className="copy-mswali">&copy; Copyright mSwali { new Date().getFullYear() }</p>
                     <span>V 0.0.1</span>
                 </div>
             </div>
