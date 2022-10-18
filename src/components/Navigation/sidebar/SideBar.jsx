@@ -11,16 +11,15 @@ function SideBar() {
 
   const logout = (e) => {
     e.preventDefault()
-    console.log("Logout Successfully");
-
-    // Alert message for login out
-    LogOutSuccessAlert()
 
     // CLEAR DATA FROM STORAGE
-    localStorage.clear();
+    // localStorage.clear();
     sessionStorage.clear();
 
     navigate("/login");
+
+    // Alert message for login out
+    LogOutSuccessAlert( )
   }
 
   return(
@@ -70,14 +69,12 @@ function SideBar() {
             >
             <NavLink to='#'
                      aria-current="true"
+                     className="pending"
                      onClick={logout}
 
             >
               <i className='fas fa-arrow-circle-right fa-fw me-3'/><span>Log Out</span>
             </NavLink>
-            {/*<a href="/" className="list-group-item list-group-item-action py-2 ripple"*/}
-            {/*><i className='fas fa-arrow-circle-right fa-fw me-3'/><span>Log Out</span></a*/}
-            {/*>*/}
           </div>
         </div>
       </nav>
