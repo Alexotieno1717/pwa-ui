@@ -14,20 +14,21 @@ function Login() {
     const navigate = useNavigate()
     const checkUser = (e) => {
         e.preventDefault();
+
+        //Check if user exits
         axios
           .get(`corporate-tunnel/check-user&email=${email}`)
           .then((res) => {
               if (res.data.status === true){
-                  SuccessAlert(res.data.message)
-                  localStorage.setItem("userEmail", email);
-                  navigate('/home')
-
+                  // Send otp to email
+                  axios.get(`corporate-tunnel/generate-otp&email=${email}`).then(r => {
+                      navigate('/otp')
+                  })
+                  // localStorage.setItem("userEmail", email);
               }else {
                   ErrorAlert(res.data.message)
                   navigate('/signup');
               }
-              console.log(res.data, "hello");
-
           })
           .catch((err) => {
               console.log(err);
