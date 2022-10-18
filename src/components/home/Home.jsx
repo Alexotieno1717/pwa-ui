@@ -6,20 +6,6 @@ import Navbar from '../Navigation/Navbar/Navbar';
 
 function Home() {
 
-    // const [myLocalStorageData, setMyLocalStorageData] = useState()
-    //
-    // useEffect(()=> {
-    //   //logic for getting a value from local storage stored under the key 'key'
-    //   const data = localStorage.getItem('userEmail')
-    //   setMyLocalStorageData(data)
-    //   console.log(data)
-    //
-    //
-    // },[myLocalStorageData]);
-
-
-
-
   return (
       <div className='container-fluid'>
 
@@ -57,9 +43,6 @@ function Home() {
                     <div className='col-md-8'>
                       <div className='roundBackground'>
                         <h2>Rounds : 3 </h2>
-                        <div>
-                          myLocalStorageData
-                        </div>
                       </div>
                     </div>
                     <div className='col-md-2'/>
