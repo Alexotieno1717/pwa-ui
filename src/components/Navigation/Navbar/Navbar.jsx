@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar() {
 
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <div>
       <nav id="main-navbar" className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -51,7 +53,8 @@ function Navbar() {
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    @JohnDoe
+                    <b>{user.userName}</b>
+
                     <img
                       src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
                       className="rounded-circle pl-2 pr-2"
@@ -69,7 +72,7 @@ function Navbar() {
 
 
         </div>
-        {/*End Container wrappe*/}
+        {/*End Container wrapper*/}
       </nav>
     </div>
   );
