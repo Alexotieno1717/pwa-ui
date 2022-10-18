@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { SuccessAlert } from '../../utils/alerts';
+import { ErrorAlert, SuccessAlert } from '../../utils/alerts';
 
 function Otp() {
 
@@ -16,14 +16,15 @@ function Otp() {
     axios
       .get(`corporate-tunnel/verify-otp&email=${user.emailAddress}&code=${parseInt(signUpOTP)}`)
       .then(res => {
-        if (res.data.is_valid == true){
+        if (res.data.is_valid === true){
           SuccessAlert(res.data.message)
           navigate('/home')
-          console.log("Verifying opt was successful")
-          console.log(res.data)
+          // console.log("Verifying opt was successful")
+          // console.log(res.data)
         }else {
-          console.log("Verification failed.... Check where the errors occurred")
-          console.log(res.data)
+          ErrorAlert(res.data.message)
+          // console.log("Verification failed.... Check where the errors occurred")
+          // console.log(res.data)
         }
       })
       .catch((err) => {
