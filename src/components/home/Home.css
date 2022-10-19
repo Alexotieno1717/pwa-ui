@@ -10,6 +10,10 @@ main {
     padding-left: 240px;
 }
 
+.homeName{
+    padding-top: 10px;
+}
+
 
 /* Sidebar */
 .sidebar {
