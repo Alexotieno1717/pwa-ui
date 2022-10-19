@@ -1,4 +1,144 @@
+/* ====================================================================
+  OTP STYLE
+ ===========================================================*/
+.otpSmallScreen{
+    display: none;
+    background: #160D3D;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+}
+
 .otpTimer{
     padding-top: 20px;
     padding-left: 50%;
+}
+
+.otpColor{
+    color: red;
+}
+
+.inputCustom{
+    text-align: center;
+}
+.inputCustom::placeholder{
+    text-align: center;
+}
+
+
+/* ====================================================================
+  MEDIA QUERY
+ ===========================================================*/
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+}
+
+
+
+@media only screen and (max-width: 600px){
+    /*Big smartphones [426px -> 600px]*/
+
+    /* ====================================================================
+    OTP STYLE
+   ===========================================================*/
+    .otpSmallScreen{
+        display: block;
+        background: #160D3D;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: white;
+    }
+
+    .otpBigScreen{
+        display: none;
+    }
+
+    .email-icon img{
+        display: block;
+        margin: 0 auto;
+    }
+
+    .button-small{
+        background: #0BFFED;
+        color: #000;
+        width: 319px;
+        height: 66px;
+        border-radius: 28px;
+        border: 1px solid #0BFFED;
+
+    }
+
+    .otp-form{
+        background: none;
+        border: none;
+        box-shadow: none;
+        text-align: center;
+        color: #fff;
+    }
+
+    .otp-form:focus{
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .otp-form::placeholder{
+        text-align: center;
+    }
+}
+
+
+@media only screen and (max-width: 425px){
+    /*Small smartphones [325px -> 425px]*/
+
+    /* ====================================================================
+    OTP STYLE
+   ===========================================================*/
+    .otpSmallScreen{
+        display: block;
+    }
+    .otpBigScreen{
+        display: none;
+    }
+
+    .email-icon img{
+        display: block;
+        margin: 0 auto;
+    }
+
+    .button-small{
+        background: #0BFFED;
+        color: #000;
+        width: 319px;
+        height: 66px;
+        border-radius: 28px;
+        border: 1px solid #0BFFED;
+
+    }
+
+    .otp-form{
+        background: none;
+        border: none;
+        box-shadow: none;
+        text-align: center;
+        color: #fff;
+    }
+
+    .otp-form:focus{
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .otp-form::placeholder{
+        text-align: center;
+    }
+
 }
