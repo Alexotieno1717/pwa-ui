@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { ErrorAlert, SuccessAlert } from '../../utils/alerts';
+import './Otp.css'
 
 function Otp() {
 
@@ -49,8 +50,8 @@ function Otp() {
                         </div>
                         <div className="loginTitle">
                             <h3 className='text-dark text-center mt-4'>Waiting for verification sent to</h3>
-                            <h5 className='text-dark text-center mt-4'>0748815593</h5>
-                            <p className="text-center pt-2">We've sent the code to you mobile phone</p>
+                            <h5 className='text-dark text-center mt-4'>{user.emailAddress}</h5>
+                            <p className="text-center pt-2">We've sent the code to you Email Address</p>
 
 
                             <form method="GET" onSubmit={otpAuth}>
@@ -60,6 +61,7 @@ function Otp() {
                                            placeholder='....'
                                            onChange={e => setSignUpOTP(e.target.value)}
                                     />
+                                    <span className="otpTimer">Timer : 2:56</span>
                                 </div>
                                 <button className='btn-custom-general'>Verify</button>
                             </form>
