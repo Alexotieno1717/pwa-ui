@@ -26,7 +26,7 @@ function Otp() {
   const otpAuth = (e) => {
     e.preventDefault()
     axios
-      .get(`corporate-tunnel/verify-otp&email=${user.emailAddress}&code=${parseInt(signUpOTP)}`)
+      .get(`corporate-tunnel/verify-otp&email=$ {user.emailAddress}&code=${parseInt(signUpOTP)}`)
       .then(res => {
         if (res.data.is_valid === true){
           SuccessAlert(res.data.message)
