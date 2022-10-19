@@ -13,8 +13,11 @@
 }
 
 .otpTimer{
-    padding-top: 20px;
     padding-left: 50%;
+}
+
+.otpResend{
+    padding-left: 40%;
 }
 
 .otpColor{
@@ -24,10 +27,25 @@
 .inputCustom{
     text-align: center;
 }
+
 .inputCustom::placeholder{
     text-align: center;
 }
 
+.btn-custom-otp{
+    background: #0BFFED !important;
+    border: 1px solid #0BFFED !important;
+    border-radius: 28px;
+    width: 256px;
+    height: 60px;
+    color: #000;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 22px;
+    margin-top: 20px;
+    margin-left: 40%;
+}
 
 /* ====================================================================
   MEDIA QUERY
