@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { ErrorAlert, SuccessAlert } from '../../utils/alerts';
 import './Otp.css'
+
 
 function Otp() {
 
@@ -10,6 +11,16 @@ function Otp() {
   const [signUpOTP, setSignUpOTP] = useState(null)
 
   const user = JSON.parse(localStorage.getItem('user'))
+
+  // Timer
+  const [ counter, setCounter] = useState(59)
+
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+      return () => clearInterval(timer);
+  }, [counter]);
+
 
 
   const otpAuth = (e) => {
@@ -57,11 +68,12 @@ function Otp() {
                             <form method="GET" onSubmit={otpAuth}>
                                 <div className="form-group">
                                     <input type="number"
-                                           className='form-control form-control-lg inputCustom mt-3'
-                                           placeholder='....'
+                                           className='form-control form-control-lg inputCustom mt-3 text-center'
+                                           placeholder='----'
                                            onChange={e => setSignUpOTP(e.target.value)}
                                     />
-                                    <span className="otpTimer">Timer : 2:56</span>
+                                    <span className="otpTimer">Resend otp in <span className="otpColor">0:{counter}</span> </span>
+
                                 </div>
                                 <button className='btn-custom-general'>Verify</button>
                             </form>
