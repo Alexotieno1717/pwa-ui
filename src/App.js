@@ -12,6 +12,10 @@ import SignUp from './components/Authentication/sign-up/SignUp';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import React from 'react';
+import MyTeam from './components/my-team/MyTeam';
+import Support from './components/support/Support';
+import Share from './components/share/Share';
+import Feedback from './components/feedback/Feedback';
 
 
 
@@ -25,6 +29,10 @@ function App() {
           <Route path='/home' element= {<Home  />} />
           <Route path='/otp' element={<Otp />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
+          <Route path='/my-team' element={<MyTeam />} />
+          <Route path='/support' element={<Support />} />
+          <Route path='/share' element={<Share />} />
+          <Route path='/feedback' element={<Feedback />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='*' element='Page does not exist'/>
