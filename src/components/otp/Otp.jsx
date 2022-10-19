@@ -69,13 +69,18 @@ function Otp() {
                                 <div className="form-group">
                                     <input type="number"
                                            className='form-control form-control-lg inputCustom mt-3 text-center'
-                                           placeholder='----'
+                                           placeholder='_ _ _ _'
                                            onChange={e => setSignUpOTP(e.target.value)}
                                     />
-                                    <span className="otpTimer">Resend otp in <span className="otpColor">0:{counter}</span> </span>
+                                    <p className="otpTimer mt-3">
+                                      Resend otp in
+                                      <span className="otpColor"> 0:{counter}</span>
+                                      <br/>
+                                    </p>
+                                  <span className="otpResend">Didn’t receive code? <a href='/otp'>Resend Email</a></span>
 
                                 </div>
-                                <button className='btn-custom-general'>Verify</button>
+                                <button className='btn-custom-otp'>Verify</button>
                             </form>
                         </div>
                     </div>
