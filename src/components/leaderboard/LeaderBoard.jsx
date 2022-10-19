@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
+import axios from 'axios';
+import { useFetch } from '../../helpers/FetchData/FetchData';
 
 
 function LeaderBoard() {
+
+    const [players, setPlayers] = useState([])
+    const [teams, setTeams] = useState([])
+
+    // Run fetchData when page loads
+    useEffect(() => {
+      getTopPlayers();
+      getTopTeams();
+    }, [])
+
+  const getTopPlayers = () => {
+    axios.get('tournament-play/get-top-performers')
+      .then(res => {
+        setPlayers(res.data.data)
+
+      }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  const getTopTeams = () => {
+    axios.get('tournament-play/get-top-teams')
+      .then(res => {
+        setTeams(res.data)
+
+      }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <div className='container-fluid'>
       <div className='row'>
@@ -28,6 +60,7 @@ function LeaderBoard() {
                   <div className='col-md-4'/>
                 </div>
               </div>
+
 
               {/* Tabs Navigation */}
               <ul className="nav nav-tabs mt-5" id="myTab" role="tablist">
@@ -59,25 +92,18 @@ function LeaderBoard() {
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>250</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>200</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>120</td>
-                      </tr>
+                      {players.map(player => (
+                        <tr key={player.name}>
+                          <th scope="row">1</th>
+                          <td>{player.name}</td>
+                          <td>{player.score}</td>
+                        </tr>
+                      ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
+
                 <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                      tabIndex="0">
                   <div className='container-fluid'>
@@ -90,23 +116,17 @@ function LeaderBoard() {
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>The Folks</td>
-                        <td>550</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>The Harry Potters</td>
-                        <td>400</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>310</td>
-                      </tr>
+                      {teams.map(team => (
+                        <tr key={team.team_name}>
+                          <th scope="row">1</th>
+                          <td>{team.team_name}</td>
+                          <td>{team.score}</td>
+                        </tr>
+                      ))}
                       </tbody>
                     </table>
+                    <div>
+                    </div>
                   </div>
                 </div>
               </div>
