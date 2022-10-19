@@ -55,7 +55,7 @@ function Login() {
                     </div>
                     <div className="loginTitle">
                         <h3 className='text-dark text-center mt-4'>Welcome to mSwali</h3>
-                        <p className='text-dark text-center mt-4'>Enter your number to continue</p>
+                        <p className='text-dark text-center mt-4'>Enter your Email Address to continue</p>
                         <form method='GET' onSubmit={checkUser}>
                             <div className="form-group">
                                 <label htmlFor="email" className='mt-3'>Enter Email Address </label>
