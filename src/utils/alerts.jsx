@@ -50,4 +50,11 @@ export const ErrorAlert = () => {
 
 }
 
+export const OtpErrorAlert = () => {
+  toast.error(`You have Entered an incorrect otp try again`, {
+    position: toast.POSITION.TOP_RIGHT
+  });
+
+}
+
 export const AlertContainer = () => ( <ToastContainer autoClose={3000}/> )
