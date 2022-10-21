@@ -1,0 +1,18 @@
+.myTeamBackground{
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 15px 40px 5px #EDEDED;
+    border-radius: 10px;
+}
+
+.btn-Join{
+    background: #0BFFED;
+}
+
+.btn-Join:hover{
+    background: #0BFFED !important;
+}
+
+.myTeamHr{
+    width: 85%;
+}
