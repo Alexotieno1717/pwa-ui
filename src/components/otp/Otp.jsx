@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { ErrorAlert, SuccessAlert } from '../../utils/alerts';
+import { ErrorAlert, OtpErrorAlert, SuccessAlert } from '../../utils/alerts';
 import './Otp.css'
 
 
@@ -34,7 +34,7 @@ function Otp() {
           // console.log("Verifying opt was successful")
           // console.log(res.data)
         }else {
-          ErrorAlert(res.data.message)
+          OtpErrorAlert(res.data.message)
           // console.log("Verification failed.... Check where the errors occurred")
           // console.log(res.data)
         }
