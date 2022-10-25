@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { ErrorAlert, OtpErrorAlert, SuccessAlert } from '../../utils/alerts';
+import { SuccessAlert } from '../../utils/alerts';
 import './Otp.css'
 
 
@@ -10,7 +10,9 @@ function Otp() {
   const navigate = useNavigate()
   const [signUpOTP, setSignUpOTP] = useState(null)
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('userSaved'))
+  // const user = JSON.parse(localStorage.getItem('userSaved'))
+  console.log(user.data.account_number)
 
   // Timer
   const [ counter, setCounter] = useState(59)
@@ -26,7 +28,7 @@ function Otp() {
   const otpAuth = (e) => {
     e.preventDefault()
     axios
-      .get(`corporate-tunnel/verify-otp&email=$ {user.emailAddress}&code=${parseInt(signUpOTP)}`)
+      .get(`corporate-tunnel/verify-otp&email=${user.data.account_number}&code=${parseInt(signUpOTP)}`)
       .then(res => {
         if (res.data.is_valid === true){
           SuccessAlert(res.data.message)
@@ -34,9 +36,9 @@ function Otp() {
           // console.log("Verifying opt was successful")
           // console.log(res.data)
         }else {
-          OtpErrorAlert(res.data.message)
-          // console.log("Verification failed.... Check where the errors occurred")
-          // console.log(res.data)
+          // OtpErrorAlert(res.data.message)
+          console.log("Verification failed.... Check where the errors occurred")
+          console.log(res.data)
         }
       })
       .catch((err) => {
@@ -61,7 +63,7 @@ function Otp() {
                         </div>
                         <div className="loginTitle">
                             <h3 className='text-dark text-center mt-4'>Waiting for verification sent to</h3>
-                            <h5 className='text-dark text-center mt-4'>{user.emailAddress}</h5>
+                            <h5 className='text-dark text-center mt-4'>{user.data.account_number}</h5>
                             <p className="text-center pt-2">We've sent the code to you Email Address</p>
 
 
