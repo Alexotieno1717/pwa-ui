@@ -1,0 +1,16 @@
+.supportBackground{
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 15px 40px 5px #EDEDED;
+    border-radius: 10px;
+}
+
+.socialIcons{
+    padding-left: 20px;
+    font-size: 20px;
+    color: #160D3D;
+}
+
+.phoneIcon{
+    margin-left: 30px;
+}
