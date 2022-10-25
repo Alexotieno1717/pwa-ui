@@ -27,6 +27,7 @@ const SignUp = () =>{
             }
             localStorage.setItem('user', JSON.stringify(userToSave))
 
+
             // localStorage.setItem("signUpEmail", emailAddress)
 
             SignUpSuccessAlert(response.data.message)
