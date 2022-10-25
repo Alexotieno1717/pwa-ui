@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 
 function Navbar() {
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('userSaved'))
+
 
   return (
     <div>
@@ -54,7 +54,7 @@ function Navbar() {
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <b>{user.userName}</b>
+                    <b>{user.data.name}</b>
 
                     <img
                       src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
