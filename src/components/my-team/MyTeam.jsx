@@ -8,12 +8,7 @@ import { Link } from 'react-router-dom';
 
 function MyTeam() {
 
-  // const urlCheckMemberShip = `tournament-play/check-membership&user_id=${this.mswaliUserID}`
-  // const joinTeam = `tournament-play/add-member&user_id=${this.mswaliUserID}&team_id=${teamID}`
-  // const getAllTeams = 'tournament-play/get-tournament'
-
-  const user = JSON.parse(localStorage.getItem('userDetails'))
-  const [team] = JSON.parse(localStorage.getItem('teams'))
+  const user = JSON.parse(localStorage.getItem('userSaved'))
 
   const [getTeams, setGetTeams] = useState([])
   const [joinTeam, setJoinTeam] = useState([])
@@ -36,9 +31,10 @@ function MyTeam() {
     })
   }
 
+
   const checkMemberShip = () => {
     axios
-      .get(`tournament-play/check-membership&user_id=${user.mswaliId}`)
+      .get(`tournament-play/check-membership&user_id=${user.data.id}`)
       .then(res => {
         if (res.status === false){
           console.log(getAllTeams())
@@ -51,8 +47,12 @@ function MyTeam() {
   }
 
 
+  // Getting teams after being saved to local storage
+  const [team] = JSON.parse(localStorage.getItem('teams'))
+
   const addMemberToTeam = () =>{
-    axios.post(`tournament-play/add-member&user_id=${user.id}&team_id=${team.id}`)
+    // console.log(`tournament-play/add-member&user_id=${user.data.id}&team_id=${team.id}`)
+    axios.post(`tournament-play/add-member&user_id=${user.data.id}&team_id=${team.id}`)
       .then(response => {
         setJoinTeam(response.data)
       })
