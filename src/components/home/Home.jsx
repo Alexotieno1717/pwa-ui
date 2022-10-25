@@ -14,6 +14,7 @@ function Home() {
   useEffect(() => {
     getTopPlayers();
     getTopTeams();
+    getUserDetails();
   }, [])
 
   const getTopPlayers = () => {
@@ -31,6 +32,19 @@ function Home() {
       .then(res => {
         setTeams(res.data)
 
+      }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  // Getting User Details
+  const getUserDetails = () =>{
+    axios.get(`api/get-user&account_number=${user.emailAddress}`)
+      .then(res => {
+        console.log("Hello consuming user Details")
+        // console.log(res.data)
+        let userToSave = res.data.data
+        localStorage.setItem('userDetails', JSON.stringify(userToSave))
       }).catch((err) => {
       console.log(err)
     })
