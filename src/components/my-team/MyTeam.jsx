@@ -1,10 +1,62 @@
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './MyTeam.css';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function MyTeam() {
+
+  // const urlCheckMemberShip = `tournament-play/check-membership&user_id=${this.mswaliUserID}`
+  // const joinTeam = `tournament-play/add-member&user_id=${this.mswaliUserID}&team_id=${teamID}`
+  // const getAllTeams = 'tournament-play/get-tournament'
+
+  const user = JSON.parse(localStorage.getItem('userDetails'))
+  const [team] = JSON.parse(localStorage.getItem('teams'))
+
+  const [getTeams, setGetTeams] = useState([])
+  const [joinTeam, setJoinTeam] = useState([])
+
+  // Run fetchData when page loads
+  useEffect(() => {
+    getAllTeams();
+    checkMemberShip();
+    // addMemberToTeam();
+  }, [])
+
+  // function 1for getting the teams
+  const getAllTeams = () =>{
+    axios.get('tournament-play/get-tournament')
+      .then(res => {
+        setGetTeams(res.data.teams)
+        localStorage.setItem('teams', JSON.stringify(res.data.teams))
+      }).catch((err) => {
+        console.log(err)
+    })
+  }
+
+  const checkMemberShip = () => {
+    axios
+      .get(`tournament-play/check-membership&user_id=${user.mswaliId}`)
+      .then(res => {
+        if (res.status === false){
+          console.log(getAllTeams())
+          return getAllTeams()
+        }
+        else{
+          addMemberToTeam();
+        }
+      })
+  }
+
+
+  const addMemberToTeam = () =>{
+    axios.post(`tournament-play/add-member&user_id=${user.id}&team_id=${team.id}`)
+      .then(response => {
+        setJoinTeam(response.data)
+      })
+  }
 
   return(
     <div className="container-fluid">
@@ -25,44 +77,38 @@ function MyTeam() {
               <div className='col-md-8'>
                 <div className='myTeamContent pt-5'>
                   <h4>Tournament</h4>
-                  <p>Below are the registered teams under this tournament</p>
-                </div>
 
-                <div className="myTeamBackground">
-                  <div className='row'>
-                    <div className='col-md-8'>
-                      <h5>OTM OLIVE</h5>
-                      <p>Status : Active</p>
+                  {joinTeam?.message?.length < 1 ? (
+                    <>
+                    <p>Below are the registered teams under this tournament</p>
+                    <div className="myTeamBackground">
+                      <div className='row'>
+                        {joinTeam.message}
+                        {getTeams.map((team, index )=> (
+                          <div className='row' key={index}>
+                            <div className="col-md-8" >
+                              <h5>{team.team_name}</h5>
+                              <p>Status : {(team.game_on === 1) ? 'Live' : 'Not Live'} </p>
+                            </div>
+                            <div className='col-md-4'>
+                              <button
+                                className='btn btn-Join'
+                                onClick={addMemberToTeam}
+                              >Join Team</button>
+                            </div>
+                            <hr className='myTeamHr'/>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className='col-md-4'>
-                      <button className='btn btn-Join'>Join Team</button>
-                    </div>
-
-                    <hr className='myTeamHr'/>
-
-                    {/*Row Two*/}
-                    <div className='col-md-8'>
-                      <h5>Monkey Kingdom</h5>
-                      <p>Status : Active</p>
-                    </div>
-                    <div className='col-md-4'>
-                      <button className='btn btn-Join'>Join Team</button>
-                    </div>
-
-                    <hr className='myTeamHr'/>
-
-                    {/*Row Three*/}
-                    <div className='col-md-8'>
-                      <h5>Travellers Sacco</h5>
-                      <p>Status : Not Live</p>
-                    </div>
-                    <div className='col-md-4'>
-                      <button className='btn btn-Join'>Join Team</button>
-                    </div>
-
-                    <hr className='myTeamHr'/>
-
-                  </div>
+                    </>
+                  ) : (
+                    <>
+                      {joinTeam?.message}
+                      <br/>
+                      <Link to="/leaderboard">View Team Score</Link>
+                    </>
+                  )}
                 </div>
               </div>
               <div className='col-md-1'/>
