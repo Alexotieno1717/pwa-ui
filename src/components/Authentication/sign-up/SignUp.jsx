@@ -20,18 +20,7 @@ const SignUp = () =>{
       .then((response) => {
         if (response.data.status_message === 'saved successfully'){
           axios.get(`corporate-tunnel/generate-otp&email=${emailAddress}`).then(r => {
-
-            let userToSave = {
-              userName,
-              emailAddress,
-            }
-            localStorage.setItem('user', JSON.stringify(userToSave))
-
-
-            // localStorage.setItem("signUpEmail", emailAddress)
-
             SignUpSuccessAlert(response.data.message)
-
             console.log("Otp send successful to your email")
             navigate('/otp');
           })
