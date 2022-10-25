@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { ErrorAlert, SuccessAlert, ValidationAlert } from '../../../utils/alerts';
+import { ErrorAlert, ValidationAlert } from '../../../utils/alerts';
 
 
 
@@ -20,10 +19,21 @@ function Login() {
           .get(`corporate-tunnel/check-user&email=${email}`)
           .then((res) => {
               if (res.data.status === true){
-                  // Send otp to email
-                  axios.get(`corporate-tunnel/generate-otp&email=${email}`).then(r => {
-                      navigate('/otp')
+                  //Query All user info from the db before navigating to otp
+                  axios.get(`api/get-user&account_number=${email}`)
+                    .then(response => {
+                        console.log("getting user data")
+                        console.log(response.data)
+                        let userSaved = response.data
+                        localStorage.setItem('userSaved', JSON.stringify(userSaved))
+                        // Send otp to email
+                        axios.get(`corporate-tunnel/generate-otp&email=${email}`).then(r => {
+                            navigate('/otp')
+                        })
+                    }).catch((err) => {
+                        console.log(err)
                   })
+
                   // localStorage.setItem("userEmail", email);
               }else {
                   ErrorAlert(res.data.message)
