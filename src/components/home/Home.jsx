@@ -6,7 +6,7 @@ import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
 
 function Home() {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('userSaved'))
   const [players, setPlayers] = useState([])
   const [teams, setTeams] = useState([])
 
@@ -14,7 +14,6 @@ function Home() {
   useEffect(() => {
     getTopPlayers();
     getTopTeams();
-    getUserDetails();
   }, [])
 
   const getTopPlayers = () => {
@@ -37,18 +36,6 @@ function Home() {
     })
   }
 
-  // Getting User Details
-  const getUserDetails = () =>{
-    axios.get(`api/get-user&account_number=${user.emailAddress}`)
-      .then(res => {
-        console.log("Hello consuming user Details")
-        // console.log(res.data)
-        let userToSave = res.data.data
-        localStorage.setItem('userDetails', JSON.stringify(userToSave))
-      }).catch((err) => {
-      console.log(err)
-    })
-  }
 
   return (
       <div className='container-fluid'>
@@ -86,7 +73,7 @@ function Home() {
                     <div className='col-md-2'/>
                     <div className='col-md-8'>
                       <div className='homeName pt-5 mt-5'>
-                        <h4>Morning {user.userName}!</h4>
+                        <h4>Morning {user.data.name}!</h4>
                       </div>
                       <div className='roundBackground'>
                         <h2>Rounds : 3 </h2>
