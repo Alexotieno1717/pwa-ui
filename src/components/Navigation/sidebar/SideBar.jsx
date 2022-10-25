@@ -13,7 +13,7 @@ function SideBar() {
     e.preventDefault()
 
     // CLEAR DATA FROM STORAGE
-    // localStorage.clear();
+    localStorage.clear();
     sessionStorage.clear();
 
     navigate("/login");
