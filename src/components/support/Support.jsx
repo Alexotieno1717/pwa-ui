@@ -2,8 +2,6 @@ import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 import React from 'react';
 import './Support.css';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
 
 
 function Support() {
@@ -30,14 +28,14 @@ function Support() {
                   <h4>Support</h4>
                   <div className='supportBackground'>
                     <h3>Need Help?</h3>
-                    <p>Give us a call at :
-                      <span className='phoneIcon'>
+                    <div>Give us a call at :
+                      <div className='phoneIcon'>
                         <br/>
                         <i className='fa fa-phone-square'> +254 794 583 651 </i>
                         <br/>
                         <i className='fa fa-phone-square'> +254 783 397 397 </i>
-                      </span>
-                    </p>
+                      </div>
+                    </div>
 
                     <p>or reach out to us via our socials</p>
                     <div>
