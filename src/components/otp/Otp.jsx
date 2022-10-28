@@ -12,7 +12,6 @@ function Otp() {
 
   const user = JSON.parse(localStorage.getItem('userSaved'))
   // const user = JSON.parse(localStorage.getItem('userSaved'))
-  console.log(user.data.account_number)
 
   // Timer
   const [ counter, setCounter] = useState(59)
