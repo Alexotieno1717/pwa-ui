@@ -19,10 +19,19 @@ const SignUp = () =>{
       .post(`corporate-tunnel/create-user&username=${userName}&email=${emailAddress}`)
       .then((response) => {
         if (response.data.status_message === 'saved successfully'){
-          axios.get(`corporate-tunnel/generate-otp&email=${emailAddress}`).then(r => {
-            SignUpSuccessAlert(response.data.message)
-            console.log("Otp send successful to your email")
-            navigate('/otp');
+          // query user details before sending otp
+          axios.get(`api/get-user&account_number=${emailAddress}`).then(res => {
+            let userSaved = res.data
+            console.log(userSaved)
+            localStorage.setItem('userSaved', JSON.stringify(userSaved))
+
+            // Send otp to email
+            axios.get(`corporate-tunnel/generate-otp&email=${emailAddress}`).then(r => {
+              SignUpSuccessAlert(response.data.message)
+
+              console.log("Otp send successful to your email")
+              navigate('/otp');
+            })
           })
         }else {
           ExistingUser(response.data.message)
