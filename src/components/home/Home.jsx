@@ -4,17 +4,16 @@ import './Home.css';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const user = JSON.parse(localStorage.getItem('userSaved'))
   const [players, setPlayers] = useState([])
   const [teams, setTeams] = useState([])
+  const [sessionId, setSessionId] = useState({})
 
-  // Run fetchData when page loads
-  useEffect(() => {
-    getTopPlayers();
-    getTopTeams();
-  }, [])
+  const navigate = useNavigate()
+
 
   const getTopPlayers = () => {
     axios.get('tournament-play/get-top-performers')
@@ -35,6 +34,30 @@ function Home() {
       console.log(err)
     })
   }
+
+  const gamePlay = (sessionGameId) =>{
+    axios
+    .get(`solo-play/get-solo-session&user_id=${user.data.id}`)
+    .then(res => {
+      // console.log(res.data.session.id)
+      setSessionId(res.data.session)
+
+      axios.get(`solo-play/fetch-questions&session_id=${sessionGameId}`).then(response => {
+        // console.log(`solo-play/fetch-questions&session_id=${sessionGameId}`)
+        // console.log(response.data)
+        if (response.data.status === 200) {
+          navigate('/questions');
+        }
+      }).catch((error) => console.log(error) )
+    })
+  } 
+
+   // Run fetchData when page loads
+   useEffect(() => {
+    getTopPlayers();
+    getTopTeams();
+    gamePlay();
+  }, [])
 
 
   return (
@@ -70,6 +93,12 @@ function Home() {
 
                 <div className='container'>
                   <div className='row'>
+                    <div className="col-md-12">
+                    <button className='btn btnPlayBigScreen mt-5' onClick={() => gamePlay(sessionId.id)}>
+                      {/* Wait for Admin to Start the Session */}
+                      Session is Live: PLAY & WIN 
+                    </button>
+                    </div>
                     <div className='col-md-2'/>
                     <div className='col-md-8'>
                       <div className='homeName pt-5 mt-5'>
