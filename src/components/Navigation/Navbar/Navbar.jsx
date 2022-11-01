@@ -1,10 +1,12 @@
+import axios from 'axios';
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 function Navbar() {
 
   const user = JSON.parse(localStorage.getItem('userSaved'))
-
 
   return (
     <div>
@@ -30,7 +32,9 @@ function Navbar() {
               </a>
             </div>
             <div className='col-md-5'>
-              <button className='btn btnPlayBigScreen'>Wait for Admin to Start the Session
+              <button className='btn btnPlayBigScreen'>
+                {/* Wait for Admin to Start the Session */}
+                Session is Live: PLAY & WIN 
               </button>
             </div>
             <div className='col-md-2'>
