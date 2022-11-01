@@ -12,6 +12,7 @@ function MyTeam() {
 
   const [getTeams, setGetTeams] = useState([])
   const [joinTeam, setJoinTeam] = useState([])
+  const [teams, setTeams] = useState([])
 
   // Run fetchData when page loads
   useEffect(() => {
@@ -25,7 +26,10 @@ function MyTeam() {
     axios.get('tournament-play/get-tournament')
       .then(res => {
         setGetTeams(res.data.teams)
-        localStorage.setItem('teams', JSON.stringify(res.data.teams))
+        // console.log(res.data.teams)
+        // localStorage.setItem('teams', JSON.stringify(res.data.teams))
+        setTeams(res.data.teams)
+
       }).catch((err) => {
         console.log(err)
     })
@@ -37,23 +41,20 @@ function MyTeam() {
       .get(`tournament-play/check-membership&user_id=${user.data.id}`)
       .then(res => {
         if (res.status === false){
-          console.log(getAllTeams())
-          return getAllTeams()
+          // console.log(getAllTeams())
+          getAllTeams()
         }
-        else{
-          addMemberToTeam();
+        else {
+          console.log("Not a member")
+          getAllTeams()
         }
       })
   }
 
-
-  // Getting teams after being saved to local storage
-  const [team] = JSON.parse(localStorage.getItem('teams'))
-
-  const addMemberToTeam = () =>{
-    // console.log(`tournament-play/add-member&user_id=${user.data.id}&team_id=${team.id}`)
-    axios.post(`tournament-play/add-member&user_id=${user.data.id}&team_id=${team.id}`)
+  const addMemberToTeam = (teamID) =>{
+    axios.post(`tournament-play/add-member&user_id=${user.data.id}&team_id=${teamID}`)
       .then(response => {
+        console.log(response.data)
         setJoinTeam(response.data)
       })
   }
@@ -83,7 +84,7 @@ function MyTeam() {
                     <p>Below are the registered teams under this tournament</p>
                     <div className="myTeamBackground">
                       <div className='row'>
-                        {joinTeam.message}
+                        {/*{joinTeam.message}*/}
                         {getTeams.map((team, index )=> (
                           <div className='row' key={index}>
                             <div className="col-md-8" >
@@ -93,7 +94,7 @@ function MyTeam() {
                             <div className='col-md-4'>
                               <button
                                 className='btn btn-Join'
-                                onClick={addMemberToTeam}
+                                onClick={() => addMemberToTeam(team.id)}
                               >Join Team</button>
                             </div>
                             <hr className='myTeamHr'/>
@@ -110,6 +111,64 @@ function MyTeam() {
                     </>
                   )}
                 </div>
+
+                    {/*<p>Below are the registered teams under this tournament</p>*/}
+                    {/*<div className="myTeamBackground">*/}
+                    {/*  <div className='row'>*/}
+                    {/*    {joinTeam.message}*/}
+                    {/*    {getTeams.map((team, index )=> (*/}
+                    {/*      <div className='row' key={index}>*/}
+                    {/*        <div className="col-md-8" >*/}
+                    {/*          <h5>{team.team_name}</h5>*/}
+                    {/*          <p>Status : {(team.game_on === 1) ? 'Live' : 'Not Live'} </p>*/}
+                    {/*        </div>*/}
+                    {/*        <div className='col-md-4'>*/}
+                    {/*          <button*/}
+                    {/*            className='btn btn-Join'*/}
+                    {/*            onClick={() => addMemberToTeam(team.id)}*/}
+                    {/*          >Join Team</button>*/}
+                    {/*        </div>*/}
+                    {/*        <hr className='myTeamHr'/>*/}
+                    {/*      </div>*/}
+                    {/*    ))}*/}
+                    {/*  </div>*/}
+                    {/*</div>*/}
+
+
+                {joinTeam ? (
+                  <>
+                    <p>Below are the registered teams under this tournament</p>
+                    <div className="myTeamBackground">
+                      <div className='row'>
+                        {joinTeam.message}
+                        {getTeams.map((team, index )=> (
+                          <div className='row' key={index}>
+                            <div className="col-md-8" >
+                              <h5>{team.team_name}</h5>
+                              <p>Status : {(team.game_on === 1) ? 'Live' : 'Not Live'} </p>
+                            </div>
+                            <div className='col-md-4'>
+                              <button
+                                className='btn btn-Join'
+                                onClick={() => addMemberToTeam(team.id)}
+                              >Join Team</button>
+                            </div>
+                            <hr className='myTeamHr'/>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {joinTeam.message}
+                    <br/>
+                    <Link to="/leaderboard">View Team Scores Leaderboard</Link>
+                  </>
+                )}
+
+
+
               </div>
               <div className='col-md-1'/>
             </div>
