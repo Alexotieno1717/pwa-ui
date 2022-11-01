@@ -16,6 +16,7 @@ import MyTeam from './components/my-team/MyTeam';
 import Support from './components/support/Support';
 import Share from './components/share/Share';
 import Feedback from './components/feedback/Feedback';
+import Questions from './components/Questions/Questions';
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/support' element={<Support />} />
           <Route path='/share' element={<Share />} />
           <Route path='/feedback' element={<Feedback />} />
+          <Route path='/questions' element={<Questions />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='*' element='Page does not exist'/>
