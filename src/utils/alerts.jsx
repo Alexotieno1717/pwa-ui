@@ -57,4 +57,4 @@ export const OtpErrorAlert = () => {
 
 }
 
-export const AlertContainer = () => ( <ToastContainer autoClose={3000}/> )
+export const AlertContainer = () => ( <ToastContainer autoClose={2000}/> )
