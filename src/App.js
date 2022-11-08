@@ -17,13 +17,13 @@ import Support from './components/support/Support';
 import Share from './components/share/Share';
 import Feedback from './components/feedback/Feedback';
 import Questions from './components/Questions/Questions';
-
+import { GameplayProvider } from './context/gameplayContext';
 
 
 function App() {
   return (
       <BrowserRouter>
-
+      <GameplayProvider>
         <ToastContainer limit={1} />
         <Routes>
           <Route path='/' element= {<SplashScreen  />} />
@@ -39,6 +39,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='*' element='Page does not exist'/>
         </Routes>
+    </GameplayProvider>
       </BrowserRouter>
   );
 }
