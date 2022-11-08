@@ -5,13 +5,17 @@ import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import useGameplay from '../../hooks/useGameplay';
+import { useContext } from 'react';
+import { GameplayContext } from '../../context/gameplayContext';
 
 function Home() {
   const user = JSON.parse(localStorage.getItem('userSaved'))
   const [players, setPlayers] = useState([])
   const [teams, setTeams] = useState([])
-  const [sessionId, setSessionId] = useState({})
+  //const [sessionId, handleGamePlay] = useGameplay({})
 
+  const {sessionId, handleGamePlay} = useContext(GameplayContext)
   const navigate = useNavigate()
 
 
@@ -35,28 +39,28 @@ function Home() {
     })
   }
 
-  const gamePlay = (sessionGameId) =>{
-    axios
-    .get(`solo-play/get-solo-session&user_id=${user.data.id}`)
-    .then(res => {
-      // console.log(res.data.session.id)
-      setSessionId(res.data.session)
+  // const gamePlay = (sessionGameId) =>{
+  //   axios
+  //   .get(`solo-play/get-solo-session&user_id=${user.data.id}`)
+  //   .then(res => {
+  //     // console.log(res.data.session.id)
+  //     setSessionId(res.data.session)
 
-      axios.get(`solo-play/fetch-questions&session_id=${sessionGameId}`).then(response => {
-        // console.log(`solo-play/fetch-questions&session_id=${sessionGameId}`)
-        // console.log(response.data)
-        if (response.data.status === 200) {
-          navigate('/questions');
-        }
-      }).catch((error) => console.log(error) )
-    })
-  } 
+  //     axios.get(`solo-play/fetch-questions&session_id=${sessionGameId}`).then(response => {
+  //       // console.log(`solo-play/fetch-questions&session_id=${sessionGameId}`)
+  //       console.log(response.data)
+  //       if (response.data.status === 200) {
+  //         navigate('/questions');
+  //       }
+  //     }).catch((error) => console.log(error) )
+  //   })
+  // } 
 
    // Run fetchData when page loads
    useEffect(() => {
     getTopPlayers();
     getTopTeams();
-    gamePlay();
+    // gamePlay();
   }, [])
 
 
@@ -94,7 +98,7 @@ function Home() {
                 <div className='container'>
                   <div className='row'>
                     <div className="col-md-12">
-                    <button className='btn btnPlayBigScreen mt-5' onClick={() => gamePlay(sessionId.id)}>
+                    <button className='btn btnPlayBigScreen mt-5' onClick={() => handleGamePlay()}>
                       {/* Wait for Admin to Start the Session */}
                       Session is Live: PLAY & WIN 
                     </button>
@@ -206,8 +210,8 @@ function Home() {
           </div>
 
           {/* Play Quiz Button */}
-          <button className='btn playQuiz'>
-            Wait for Admin to Start the Session
+          <button className='btn playQuiz'  onClick={() => handleGamePlay(sessionId.id)}>
+            Session is Live: PLAY & WIN 
             <i className='fa fa-arrow-right '/>
           </button>
         </div>
