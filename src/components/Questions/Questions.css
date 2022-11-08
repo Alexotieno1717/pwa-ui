@@ -1,6 +1,29 @@
 #questionsBackground{
     background: #160D3D;
     color: white;
-    height: 100vh
+    height: auto;
+    padding-bottom: 66px;
 }
 
+.questionsLogo{
+    width: 55%;
+}
+
+.questionImg > img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.questionChoices{
+    background: #E5E5E5;
+    border-radius: 12px;
+    padding: 10px;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    color: black;
+}
