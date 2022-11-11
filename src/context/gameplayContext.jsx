@@ -8,7 +8,7 @@ const GameplayContext = createContext();
 // Provider
 const GameplayProvider = ({children}) => {
 
-    const [ sessionId , setSessionId ] = useState();
+    const [ sessionId , setSessionId ] = useState([]);
     const user = JSON.parse(localStorage.getItem('userSaved'))
     const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ const GameplayProvider = ({children}) => {
             // console.log(`solo-play/fetch-questions&session_id=${sessionGameId}`)
             // console.log(response.data)
             if (response.data.status === 200) {
-                setSessionId(response.data)
+                setSessionId(response.data.data)
                 navigate('/questions');
             }
           }).catch((error) => console.log(error) )
