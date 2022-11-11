@@ -24,6 +24,50 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
     width: 75%;
     color: black;
 }
+
+
+.next-button {
+    margin: 0 auto;
+    color: #fff;
+    background: #FFC341;
+    width: 75%;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 14px 75px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+}
+  
+.correct-answer {
+    background: #1ea55b;
+}
+.green{
+    background: #1ea55b;
+    border-radius: 12px;
+    padding: 10px;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 75%;
+    color: black;
+}
+.wrong{
+    background: #dc0a0a;
+    border-radius: 12px;
+    padding: 10px;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 75%;
+    color: black;
+}
+
