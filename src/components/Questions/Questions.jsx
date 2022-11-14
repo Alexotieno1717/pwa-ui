@@ -11,6 +11,7 @@ function Questions() {
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false)
   const [color, setColor] = useState('')
+  const [choiceId, setChoiceId] = useState('')
   const [clicked, setClicked] = useState(false)
 
   const TIME_LIMIT = 12;
@@ -20,7 +21,8 @@ function Questions() {
 
   
 
-  const handleAnswerClick = (correct) =>{
+  const handleAnswerClick = (correct, choiceId) =>{
+      setChoiceId(choiceId)
     if (correct === 1) {
       setScore(score + 1);
       setClicked(true);
@@ -42,6 +44,13 @@ function Questions() {
       setShowScore(true)
     }
   }
+
+  // const startOver = () => {
+  //   setCurrentQuestion(0);
+  //   setFinish(false);
+  //   setMyAnswer("");
+  //   setScore(0);
+  // };
 
 
 
@@ -90,14 +99,11 @@ function Questions() {
             {/* Questions Choices */}
             {sessionId[currentQuestion].choices.map((answerOption, index) => (
                 <div 
-                  // className={clicked && answerOption.correct === 1 ? "green" : "questionChoices" }
-                  className={`questionChoices ${
-                    clicked 
-                    ? answerOption.correct === 1? "green" : "wrong"
-                    : ""
-                  }`}
+                  className={`questionChoices ${choiceId === answerOption.id && clicked === true && answerOption.correct === 1 && "green"}  
+                  ${choiceId === answerOption.id && clicked === true && answerOption.correct === 0 && "wrong"}
+                  ${choiceId !== answerOption.id && clicked === true && answerOption.correct === 1 && "green"}`}
                   key={index.id}
-                  onClick={() => handleAnswerClick(answerOption.correct)}>
+                  onClick={() => handleAnswerClick(answerOption.correct, answerOption.id)}>
                 <h5 className='pt-2 pl-4 '>
                   {answerOption.choice}. {answerOption.answer_text}
                 </h5>
