@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GameplayContext } from '../../context/gameplayContext';
+import { CorrectAnswer, WrongAnswer } from '../../utils/alerts';
 import './Questions.css';
 
 function Questions() {
@@ -10,7 +11,6 @@ function Questions() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false)
-  const [color, setColor] = useState('')
   const [choiceId, setChoiceId] = useState('')
   const [clicked, setClicked] = useState(false)
 
@@ -26,9 +26,11 @@ function Questions() {
     if (correct === 1) {
       setScore(score + 1);
       setClicked(true);
+      CorrectAnswer();
     }else if(correct === 0){
       setClicked(true)
       setScore(score);
+      WrongAnswer()
     }
     setShow(true)
 
@@ -64,8 +66,15 @@ function Questions() {
           <div className="col-md-6" id='questionSmallScreenBackground'>
             {showScore ? (
               <>
-                <div className="score">Your Score is {score} out of 10</div>
-                <Link to='/home' className='btn btn-info'>Home</Link>
+                <img className='questionsLogo pt-5 mt-5' src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
+                <h4 className='pt-5'>Awesome try on your quiz</h4>
+                <p> <i className='fas fa-check-circle' /> Correct : {score} </p>
+                <p> <i className='fas fa-times-circle' /> Failed : 5</p>
+                <p> <i className='fas fa-clock' /> Timeout : 0</p>
+                <div className="score">Points Earned : {score * 10}  </div>
+                <button className='btn btn-lg btn-warning'>Play Again</button>
+                <br />
+                <Link to='/home' className='btn btn-link'>Go to Homepage </Link>
               </>
             ) : (
               <>
@@ -105,7 +114,7 @@ function Questions() {
                   key={index.id}
                   onClick={() => handleAnswerClick(answerOption.correct, answerOption.id)}>
                 <h5 className='pt-2 pl-4 '>
-                  {answerOption.choice}. {answerOption.answer_text}
+                  {answerOption.choice}. {answerOption.answer_text} 
                 </h5>
               </div>
               

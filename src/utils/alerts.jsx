@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
 
@@ -57,4 +56,20 @@ export const OtpErrorAlert = () => {
 
 }
 
-export const AlertContainer = () => ( <ToastContainer autoClose={2000}/> )
+export const CorrectAnswer = () => {
+  toast.success(`😀 You seleceted correct answer.`, {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 2000,
+  });
+
+}
+
+export const WrongAnswer = () => {
+  toast.error(`😢 you selected Wrong answer.`, {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 2000,
+  });
+
+}
+
+export const AlertContainer = () => ( <ToastContainer autoClose={3000}/> )
