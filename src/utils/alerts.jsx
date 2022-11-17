@@ -72,4 +72,12 @@ export const WrongAnswer = () => {
 
 }
 
+export const TimeOutAnswer = () => {
+  toast.info(`😢 Time Out.`, {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 2000,
+  });
+
+}
+
 export const AlertContainer = () => ( <ToastContainer autoClose={3000}/> )
