@@ -71,6 +71,11 @@
     color: black;
 }
 
+#pomodoro-timer{
+    display: flex;
+    justify-content: center; 
+    margin-top: 25px;
+  }
 
 /* .green{
     background: #fff;
