@@ -27,6 +27,12 @@
     margin-bottom: 20px;
     width: 75%;
     color: black;
+
+}
+
+.check-icon{
+    float: right;
+    padding-right: 20px;
 }
 
 
