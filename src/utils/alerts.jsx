@@ -59,7 +59,7 @@ export const OtpErrorAlert = () => {
 export const CorrectAnswer = () => {
   toast.success(`😀 You seleceted correct answer.`, {
     position: toast.POSITION.TOP_CENTER,
-    autoClose: 2000,
+    autoClose: 800,
   });
 
 }
@@ -67,7 +67,7 @@ export const CorrectAnswer = () => {
 export const WrongAnswer = () => {
   toast.error(`😢 you selected Wrong answer.`, {
     position: toast.POSITION.TOP_CENTER,
-    autoClose: 2000,
+    autoClose: 800,
   });
 
 }
@@ -75,7 +75,7 @@ export const WrongAnswer = () => {
 export const TimeOutAnswer = () => {
   toast.info(`😢 Time Out.`, {
     position: toast.POSITION.TOP_CENTER,
-    autoClose: 2000,
+    autoClose: 900,
   });
 
 }
