@@ -3,7 +3,7 @@ import React ,{ useState, createContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 // Context
-const GameplayContext = createContext();
+const   GameplayContext = createContext();
 
 // Provider
 const GameplayProvider = ({children}) => {
