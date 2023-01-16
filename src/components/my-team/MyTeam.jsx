@@ -14,12 +14,7 @@ function MyTeam() {
   const [joinTeam, setJoinTeam] = useState([])
   const [teams, setTeams] = useState([])
 
-  // Run fetchData when page loads
-  useEffect(() => {
-    getAllTeams();
-    checkMemberShip();
-    // addMemberToTeam();
-  }, [])
+
 
   // function 1for getting the teams
   const getAllTeams = () =>{
@@ -58,6 +53,13 @@ function MyTeam() {
         setJoinTeam(response.data)
       })
   }
+
+    // Run fetchData when page loads
+    useEffect(() => {
+      getAllTeams();
+      checkMemberShip();
+      // addMemberToTeam();
+    }, [])
 
   return(
     <div className="container-fluid">
