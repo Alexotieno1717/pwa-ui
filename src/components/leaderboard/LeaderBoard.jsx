@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
-import { useFetch } from '../../helpers/FetchData/FetchData';
 
 
 function LeaderBoard() {
