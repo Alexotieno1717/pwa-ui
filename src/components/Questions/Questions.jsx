@@ -3,22 +3,17 @@ import { Link } from 'react-router-dom';
 import { GameplayContext } from '../../context/gameplayContext';
 import { CorrectAnswer, TimeOutAnswer, WrongAnswer } from '../../utils/alerts';
 import './Questions.css';
+import Timer from '../timer/Timer';
 
 function Questions() {
-
-  const TIME_LIMIT = 12;
-
-  const {sessionId} = useContext(GameplayContext)
+  const {sessionId, handleGamePlay} = useContext(GameplayContext)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false)
   const [choiceId, setChoiceId] = useState('')
   const [clicked, setClicked] = useState(false)
-  // const [time, setTime] = useState(TIME_LIMIT)
-  const [counter, setCounter] = useState(TIME_LIMIT);
   const [isDisabled, setIsDisabled] = useState(false)
-
 
 
   console.log(sessionId)  
@@ -39,12 +34,10 @@ function Questions() {
       TimeOutAnswer()
     }
     setShow(true)
-    
 
   }
 
-
-  // Go to next Question button
+  // NEXT BUTTON FUNCTIONALITY GOES HERE...
   const goNextQuestion = () =>{
     setClicked(false)
     setIsDisabled(false)
@@ -52,13 +45,14 @@ function Questions() {
     if (nextQuestion < sessionId.length) {
       setCurrentQuestion(nextQuestion)
       setClicked(false)
-      setCounter(TIME_LIMIT)
       setShow(false)
       setIsDisabled(false)
     }else{
       setShowScore(true)
     }
   }
+
+  // TIMER FUNCTIONALITY GOES HERE.....
 
   return (
     <div className='container-fluid' id='questionsBackground'>
@@ -74,7 +68,7 @@ function Questions() {
                 <p> <i className='fas fa-times-circle' /> Failed : {sessionId.length - score}</p>
                 <p> <i className='fas fa-clock' /> Timeout : 0</p>
                 <div className="score">Points Earned : {score * 10}  </div>
-                <button className='btn btn-lg btn-warning'>Play Again</button>
+                <button className='btn btn-lg btn-warning' onClick={() => handleGamePlay(sessionId)} >Play Again</button>
                 <br />
                 <Link to='/home' className='btn btn-link'>Go to Homepage </Link>
               </>
@@ -94,11 +88,13 @@ function Questions() {
 
               {/* Questions Timer */}
               <div className="progress timer bg-success p-3 mt-2">
-                <div className="progress-bar text-white"></div>
+                <div className='progress-bar text-white'/>
                 <i className='fas fa-clock'> Timer Icon</i>
                 <span className="text-white"> 0:</span>
-
               </div>
+              <Timer />
+              {/* <Timer time={time} onTimeOut={() => this.handleTimeOut()}/> */}
+
 
               {/* Question image */}
               <div className="questionImg">
@@ -137,7 +133,7 @@ function Questions() {
               
             ))}
 
-            {show ? 
+            {show ?
             <>
               <div
                   onClick={() => goNextQuestion()}
@@ -146,8 +142,14 @@ function Questions() {
                 Next question
               </div>
             </>
-            : null
+            :null
             }
+            {/* {
+                (questionIndex + 1) !== quizs.length ?
+                    <button className='btn py-2 w-100 mt-3 bg-primary text-light fw-bold' onClick={nextQuestion} disabled={!selectedAnswer}>Next Question</button>
+                    :
+                    <button className='btn py-2 w-100 mt-3 bg-primary text-light fw-bold' onClick={showTheResult} disabled={!selectedAnswer}>Show Result</button>
+            } */}
             </>
             )}
           </div>
