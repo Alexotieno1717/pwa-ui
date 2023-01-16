@@ -4,8 +4,6 @@ import './Home.css';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useGameplay from '../../hooks/useGameplay';
 import { useContext } from 'react';
 import { GameplayContext } from '../../context/gameplayContext';
 
@@ -16,7 +14,6 @@ function Home() {
   //const [sessionId, handleGamePlay] = useGameplay({})
 
   const {sessionId, handleGamePlay} = useContext(GameplayContext)
-  const navigate = useNavigate()
 
 
   const getTopPlayers = () => {
