@@ -16,7 +16,7 @@ function MyTeam() {
 
 
 
-  // function 1for getting the teams
+  // function for getting the teams
   const getAllTeams = () =>{
     axios.get('tournament-play/get-tournament')
       .then(res => {

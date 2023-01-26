@@ -6,6 +6,7 @@ import Navbar from '../Navigation/Navbar/Navbar';
 import axios from 'axios';
 import { useContext } from 'react';
 import { GameplayContext } from '../../context/gameplayContext';
+import  imageData  from '../../assets/data.png';
 
 function Home() {
   const user = JSON.parse(localStorage.getItem('userSaved'))
@@ -19,7 +20,7 @@ function Home() {
   const getTopPlayers = () => {
     axios.get('tournament-play/get-top-performers')
       .then(res => {
-        setPlayers(res.data.data)
+        setPlayers(res.data.data) 
 
       }).catch((err) => {
       console.log(err)
@@ -29,7 +30,9 @@ function Home() {
   const getTopTeams = () => {
     axios.get('tournament-play/get-top-teams')
       .then(res => {
+        console.log(res.data)
         setTeams(res.data)
+        
 
       }).catch((err) => {
       console.log(err)
@@ -143,13 +146,24 @@ function Home() {
                         </tr>
                         </thead>
                         <tbody>
-                        {players.map(player => (
-                          <tr key={player.name}>
-                            <th scope="row">1</th>
-                            <td>{player.name}</td>
-                            <td>{player.score}</td>
-                          </tr>
-                        ))}
+                          {players ?
+                            players.map(player => (
+                              <tr key={player.name}>
+                                <th scope="row">1</th>
+                                <td>{player.name}</td>
+                                <td>{player.score}</td>
+                              </tr>
+                            ))
+                            :
+                            <>
+                              <tbody>
+                                <tr>                                  
+                                  <img src={imageData} className="no-data mt-4" alt="No data" />
+                                 
+                                </tr>
+                              </tbody>
+                            </>
+                          }
                         </tbody>
                       </table>
                     </div>
@@ -166,13 +180,20 @@ function Home() {
                         </tr>
                         </thead>
                         <tbody>
-                        {teams.map(team => (
-                          <tr key={team.team_name}>
-                            <th scope="row">1</th>
-                            <td>{team.team_name}</td>
-                            <td>{team.score}</td>
-                          </tr>
-                        ))}
+                        {/* {teams ?
+                          teams.map(team => (
+                            <tr key={team.team_name}>
+                              <th scope="row">1</th>
+                              <td>{team.team_name}</td>
+                              <td>{team.score}</td>
+                            </tr>
+                          ))
+                        :
+                          <>
+                            <div>No Teams</div>
+                          </>
+                        } */}
+
                         </tbody>
                       </table>
                     </div>

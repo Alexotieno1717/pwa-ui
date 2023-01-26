@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SideBar from '../Navigation/sidebar/SideBar';
 import Navbar from '../Navigation/Navbar/Navbar';
+import  imageData  from '../../assets/data.png';
 import axios from 'axios';
 
 
@@ -91,13 +92,24 @@ function LeaderBoard() {
                       </tr>
                       </thead>
                       <tbody>
-                      {players.map(player => (
-                        <tr key={player.name}>
-                          <th scope="row">1</th>
-                          <td>{player.name}</td>
-                          <td>{player.score}</td>
-                        </tr>
-                      ))}
+                        {players ?
+                          players.map(player => (
+                            <tr key={player.name}>
+                              <th scope="row">1</th>
+                              <td>{player.name}</td>
+                              <td>{player.score}</td>
+                            </tr>
+                          ))
+                          :
+                          <>
+                            <tbody>
+                              <tr>                                  
+                                <img src={imageData} className="no-data mt-4" alt="No data" />
+                                
+                              </tr>
+                            </tbody>
+                          </>
+                        }
                       </tbody>
                     </table>
                   </div>
@@ -115,13 +127,13 @@ function LeaderBoard() {
                       </tr>
                       </thead>
                       <tbody>
-                      {teams.map(team => (
+                      {/* {teams.map(team => (
                         <tr key={team.team_name}>
                           <th scope="row">1</th>
                           <td>{team.team_name}</td>
                           <td>{team.score}</td>
                         </tr>
-                      ))}
+                      ))} */}
                       </tbody>
                     </table>
                     <div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GameplayContext } from '../../context/gameplayContext';
 import { CorrectAnswer, TimeOutAnswer, WrongAnswer } from '../../utils/alerts';
@@ -6,6 +6,27 @@ import './Questions.css';
 import Timer from '../timer/Timer';
 
 function Questions() {
+  const FULL_DASH_ARRAY = 283;
+  const WARNING_THRESHOLD = 7;
+  const ALERT_THRESHOLD = 5;
+
+  const COLOR_CODES = {
+    info: {
+      color: "green",
+    },
+    warning: {
+      color: "orange",
+      threshold: WARNING_THRESHOLD,
+    },
+    alert: {
+      color: "red",
+      threshold: ALERT_THRESHOLD,
+    },
+  };
+  const TIME_LIMIT = 15;
+  const [timeRemaining, setTimeRemaining] = useState(TIME_LIMIT);
+
+  
   const {sessionId, handleGamePlay} = useContext(GameplayContext)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -44,6 +65,7 @@ function Questions() {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < sessionId.length) {
       setCurrentQuestion(nextQuestion)
+      setTimeRemaining(TIME_LIMIT)
       setClicked(false)
       setShow(false)
       setIsDisabled(false)
@@ -53,6 +75,38 @@ function Questions() {
   }
 
   // TIMER FUNCTIONALITY GOES HERE.....
+  function circleDasharray() {
+
+    return `${((timeRemaining / TIME_LIMIT) * FULL_DASH_ARRAY).toFixed(0)} 283`;
+    
+
+  }
+
+  function remainingPathColor() {
+    const { alert, warning, info } = COLOR_CODES;
+    
+      if (timeRemaining <= alert.threshold) {
+        return alert.color;
+      } else if (timeRemaining <= warning.threshold) {
+        return warning.color;
+      } else {
+        return info.color;
+      }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeRemaining(timeRemaining => {
+          if (timeRemaining > 0) {
+              return timeRemaining - 1;
+          }else {
+              clearInterval(interval);
+              return 0;
+          }
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className='container-fluid' id='questionsBackground'>
@@ -92,13 +146,15 @@ function Questions() {
                 <i className='fas fa-clock'> Timer Icon</i>
                 <span className="text-white"> 0:</span>
               </div>
-              <Timer />
-              {/* <Timer time={time} onTimeOut={() => this.handleTimeOut()}/> */}
-
+              <Timer 
+                circleDasharray={circleDasharray()} 
+                remainingPathColor={remainingPathColor()} 
+                timeRemaining={timeRemaining}
+              />
 
               {/* Question image */}
               <div className="questionImg">
-                <img className='mt-3' src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Serengeti_sunset-1001.jpg" alt="Serengeti" />
+                {/* <img className='mt-3' src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Serengeti_sunset-1001.jpg" alt="Serengeti" /> */}
               </div>
             </div>
 
