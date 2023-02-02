@@ -4,6 +4,7 @@ import { GameplayContext } from '../../context/gameplayContext';
 import { CorrectAnswer, TimeOutAnswer, WrongAnswer } from '../../utils/alerts';
 import './Questions.css';
 import Timer from '../timer/Timer';
+import QuestionTitle from './QuestionTitle';
 
 function Questions() {
   const FULL_DASH_ARRAY = 283;
@@ -30,11 +31,16 @@ function Questions() {
   const {sessionId, handleGamePlay} = useContext(GameplayContext)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [score, setScore] = useState(0);
   const [show, setShow] = useState(false)
   const [choiceId, setChoiceId] = useState('')
   const [clicked, setClicked] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
+  const [score, setScore] = useState(0);
+  const [wrongQuestion, setWrongQuestion] = useState(0)
+  const [timeOutQuestion, setTimeOutQuestion] = useState(0)
+  
+
+  
 
 
   console.log(sessionId)  
@@ -49,7 +55,8 @@ function Questions() {
       CorrectAnswer()
     }else if(correct === 0){
       setClicked(true)
-      setScore(score);
+      // setScore(score);
+      setWrongQuestion(wrongQuestion + 1)
       WrongAnswer()  // Alert when user click wrong Answer
     }else{
       TimeOutAnswer()
@@ -100,13 +107,14 @@ function Questions() {
           if (timeRemaining > 0) {
               return timeRemaining - 1;
           }else {
+
               clearInterval(interval);
               return 0;
           }
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [timeRemaining]);
 
   return (
     <div className='container-fluid' id='questionsBackground'>
@@ -119,7 +127,7 @@ function Questions() {
                 <img className='questionsLogo pt-5 mt-5' src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
                 <h4 className='pt-5'>Awesome try on your quiz</h4>
                 <p> <i className='fas fa-check-circle' /> Correct : {score} </p>
-                <p> <i className='fas fa-times-circle' /> Failed : {sessionId.length - score}</p>
+                <p> <i className='fas fa-times-circle' /> Failed : {wrongQuestion}</p>
                 <p> <i className='fas fa-clock' /> Timeout : 0</p>
                 <div className="score">Points Earned : {score * 10}  </div>
                 <button className='btn btn-lg btn-warning' onClick={() => handleGamePlay(sessionId)} >Play Again</button>
@@ -134,18 +142,13 @@ function Questions() {
                 <img className='questionsLogo' src={process.env.PUBLIC_URL+"/img/logos/mSwali-cyan.png"}  alt='mswali logo' />
               </div>
               <div className="col- col-md-4">
-                <i className='fas fa-music pt-4'>Sound Icon</i>
+                {/* <i className='fas fa-music pt-4'>Sound Icon</i> */}
               </div>
 
               {/* Questions progress bar */}
               <h5 className='text-center pt-3'>Question {currentQuestion + 1} / {sessionId.length}</h5>
 
               {/* Questions Timer */}
-              <div className="progress timer bg-success p-3 mt-2">
-                <div className='progress-bar text-white'/>
-                <i className='fas fa-clock'> Timer Icon</i>
-                <span className="text-white"> 0:</span>
-              </div>
               <Timer 
                 circleDasharray={circleDasharray()} 
                 remainingPathColor={remainingPathColor()} 
@@ -159,7 +162,7 @@ function Questions() {
             </div>
 
             {/* Question Text */}
-            <h5 className='text-center pt-3'>{sessionId[currentQuestion].question}</h5>
+            <QuestionTitle questions={sessionId[currentQuestion].question} />
 
             {/* Questions Choices */}
             {sessionId[currentQuestion].choices.map((answerOption, index) => (
@@ -200,12 +203,6 @@ function Questions() {
             </>
             :null
             }
-            {/* {
-                (questionIndex + 1) !== quizs.length ?
-                    <button className='btn py-2 w-100 mt-3 bg-primary text-light fw-bold' onClick={nextQuestion} disabled={!selectedAnswer}>Next Question</button>
-                    :
-                    <button className='btn py-2 w-100 mt-3 bg-primary text-light fw-bold' onClick={showTheResult} disabled={!selectedAnswer}>Show Result</button>
-            } */}
             </>
             )}
           </div>
