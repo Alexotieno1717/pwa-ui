@@ -1,8 +1,13 @@
 #questionsBackground{
     background: #160D3D;
     color: white;
-    height: auto;
-    padding-bottom: 66px;
+    /* height: auto;
+    padding-bottom: 66px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .questionsLogo{
