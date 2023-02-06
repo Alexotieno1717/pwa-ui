@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import './Timer.css';
 
 const Timer = ({circleDasharray, remainingPathColor, timeRemaining}) =>{
