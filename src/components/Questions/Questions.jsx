@@ -106,10 +106,10 @@ function Questions() {
       setTimeRemaining(timeRemaining => {
           if (timeRemaining > 0) {
               return timeRemaining - 1;
-          }else {
+          }else { 
 
               clearInterval(interval);
-              return 0;
+              return 'Time is up!!!';
           }
       });
     }, 1000);
@@ -128,7 +128,7 @@ function Questions() {
                 <h4 className='pt-5'>Awesome try on your quiz</h4>
                 <p> <i className='fas fa-check-circle' /> Correct : {score} </p>
                 <p> <i className='fas fa-times-circle' /> Failed : {wrongQuestion}</p>
-                <p> <i className='fas fa-clock' /> Timeout : 0</p>
+                <p> <i className='fas fa-clock' /> Timeout : 0 </p>
                 <div className="score">Points Earned : {score * 10}  </div>
                 <button className='btn btn-lg btn-warning' onClick={() => handleGamePlay(sessionId)} >Play Again</button>
                 <br />
